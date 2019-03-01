@@ -23,7 +23,7 @@ elif len(sys.argv) == 3 and sys.argv[1].lower() == 'delete':
     # notify user that keyword is successfully deleted
     print([sys.argv[2] + ' deleted'])
 
-elif len(sys.argv) == 2 :
+elif len(sys.argv) == 2 and sys.argv[1].lower() != 'delete_all':
 # List keywords and load content.
     if sys.argv[1].lower() == 'list':
         pyperclip.copy(str(list(mcbShelf.keys()
