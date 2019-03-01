@@ -4,7 +4,7 @@
 # py.exe mcb.pyw <keyword> - Loads keyword to clipboard.
 # py.exe mcb.pyw list - loads all keywords to clipboard
 #py.exe mcb_ext.pyw delete <keyword>- Deletes saved keyword and contents
-
+#py.exe mcb_ext.pyw delete_all - Deletes all keywords from clipboard
 
 import shelve, pyperclip, sys
 
@@ -23,10 +23,7 @@ elif len(sys.argv) == 3 and sys.argv[1].lower() == 'delete':
     # notify user that keyword is successfully deleted
     print([sys.argv[2] + ' deleted'])
 
-
-
-
-elif len(sys.argv) == 2:
+elif len(sys.argv) == 2 :
 # List keywords and load content.
     if sys.argv[1].lower() == 'list':
         pyperclip.copy(str(list(mcbShelf.keys()
@@ -35,7 +32,9 @@ elif len(sys.argv) == 2:
     elif sys.argv[1] in mcbShelf:
         pyperclip.copy(mcbShelf[sys.argv[1]])
         print(sys.argv[1] + ' loaded successfully')
- # TODO: delete ALL keywords and contents.
-
+ #delete ALL keywords and contents.
+elif len(sys.argv) == 2 and sys.argv[1].lower() == 'delete_all':
+    mcbShelf.clear()
+    print('All keywords and contents have been deleted')
 
 mcbShelf.close()
